@@ -6,6 +6,9 @@ import "./CartItem.css";
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addItem(product));
+  };
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -26,6 +29,9 @@ const CartItem = ({ onContinueShopping }) => {
         quantity: item.quantity + 1,
       }),
     );
+    const handleAddToCart = (product) => {
+      dispatch(addItem(product));
+    };
   };
 
   const handleDecrement = (item) => {
@@ -43,6 +49,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleRemove = (item) => {
     dispatch(removeItem(item.id));
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
